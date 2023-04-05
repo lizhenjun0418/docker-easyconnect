@@ -16,11 +16,12 @@
 - `EC_CLI_URL`（仅适用于命令行版）: [@shmilee](https://github.com/shmilee) 提供的命令行 `7.6.8` 版 deb 包的下载地址，默认为 `https://github.com/shmilee/scripts/releases/download/v0.0.1/easyconn_7.6.8.2-ubuntu_amd64.deb`
 
 ## 从 Dockerfile 构建
-
+  本项目是在原docker-easyconnect（https://github.com/hagb/docker-easyconnect.git）项目下的定制构建容器，增加了nginx以及jdk运行环境，因此在构建前需先下载好jdk(jdk-8u351-linux-x64.tar.gz)安装包，放到Dockerfile同级目录下，若想更换其他版本jdk，请修改 Dockerfile文件地33行（ADD jdk-8u351-linux-x64.tar.gz /usr/local/jdk/）修改为自己的jdk版本压缩包。
+  
 ### 纯命令行
 
 ``` bash
-git clone https://github.com/hagb/docker-easyconnect.git
+git clone https://github.com/lizhenjun0418/docker-easyconnect.git
 cd docker-easyconnect
 docker image build -f Dockerfile.fake-hwaddr -t fake-hwaddr .
 docker image build --tag hagb/docker-easyconnect -f Dockerfile.cli .
@@ -29,20 +30,20 @@ docker image build --tag hagb/docker-easyconnect -f Dockerfile.cli .
 ### 带 VNC 服务端
 
 ``` bash
-git clone https://github.com/hagb/docker-easyconnect.git
+git clone https://github.com/lizhenjun0418/docker-easyconnect.git
 cd docker-easyconnect
 docker image build -f Dockerfile.fake-hwaddr -t fake-hwaddr .
-EC_VER=7.6.3  # 此变量填写 ec_urls 文件夹中的版本，`7.6.3`或`7.6.7`
+EC_VER=7.6.7  # 此变量填写 ec_urls 文件夹中的版本，`7.6.3`或`7.6.7`
 docker image build --build-arg EC_URL=$(cat ec_urls/${EC_VER}.txt) --tag hagb/docker-easyconnect -f Dockerfile .
 ```
 
 ### 使用 X11 socket 而无 VNC 服务端
 
 ``` bash
-git clone https://github.com/hagb/docker-easyconnect.git
+git clone https://github.com/lizhenjun0418/docker-easyconnect.git
 cd docker-easyconnect
 docker image build -f Dockerfile.fake-hwaddr -t fake-hwaddr .
-EC_VER=7.6.3  # 此变量填写 ec_urls 文件夹中的版本，`7.6.3`或`7.6.7`
+EC_VER=7.6.7  # 此变量填写 ec_urls 文件夹中的版本，`7.6.3`或`7.6.7`
 docker image build --build-arg EC_URL=$(cat ec_urls/${EC_VER}.txt) --tag hagb/docker-easyconnect -f Dockerfile.vncless .
 ```
 

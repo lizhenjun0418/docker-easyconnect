@@ -2,11 +2,7 @@
 
 让深信服开发的**非自由**的 EasyConnect 代理软件运行在 docker 中，并开放 Socks5 供宿主机连接以使用代理。（此外亦可通过 [ip forward 的方式](doc/usage.md#ip-forward) 来使用）
 
-本项目基于 EasyConnect 官方“Linux”版的 deb 包以及 [@shmille](https://github.com/shmilee) 提供的[命令行版客户端 deb 包](https://github.com/shmilee/scripts/releases/download/v0.0.1/easyconn_7.6.8.2-ubuntu_amd64.deb)。
-
-另有 [@shmilee](https://github.com/shmilee) 的 [easyconnect-in-docker 方案](https://github.com/shmilee/scripts/tree/master/easyconnect-in-docker)（另见 [#35](https://github.com/Hagb/docker-easyconnect/issues/35)）实现了多 EasyConnect 版本共用容器，其中还有另一个[纯 cli 版本的容器](https://github.com/shmilee/scripts/tree/master/easyconnect-in-docker/only-cli)。
-
-望批评、指正。欢迎提交 issue、PR，包括但不仅限于 bug、各种疑问、代码和文档的改进。
+本项目基于@hagb docker-easyconnect(https://github.com/hagb/docker-easyconnect.git), 主要在此基础上增加了nginx、jdk运行环境，以及jar启动脚本
 
 详细用法见于 [doc/usage.md](doc/usage.md)，常见问题见于 [doc/faq.md](doc/faq.md)，自行构建可参照构建说明 [doc/build.md](doc/build.md)。
 
