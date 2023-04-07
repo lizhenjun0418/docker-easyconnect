@@ -1,11 +1,11 @@
 #!/bin/sh
-# ./aiui.sh start 启动 stop 停止 restart 重启 status 状态
+# ./flight-etl.sh start 启动 stop 停止 restart 重启 status 状态
 AppName=flight-etl
 
-JAVA_HOME=/usr/local/jdk/jdk1.8.0_351/bin/java
+#JAVA_HOME=/usr/local/jdk/jdk1.8.0_351/bin/java
 # JVM参数
 JVM_OPTS="-Dname=$AppName -Duser.timezone=Asia/Shanghai -Xms512m -Xmx1024m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=512m -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCDateStamps  -XX:+PrintGCDetails -XX:NewRatio=1 -XX:SurvivorRatio=30 -XX:+UseParallelGC -XX:+UseParallelOldGC"
-APP_HOME=/data/flight-etl
+APP_HOME=/data/flight-imf
 LOG_PATH=$APP_HOME/logs/$AppName.log
 
 if [ "$1" = "" ]; then
@@ -24,7 +24,7 @@ start() {
   if [ x"$PID" != x"" ]; then
     echo "$AppName is running..."
   else
-    nohup $JAVA_HOME $JVM_OPTS -jar $APP_HOME/$AppName.jar >$LOG_PATH 2>&1 &
+    nohup java $JVM_OPTS -jar $APP_HOME/$AppName.jar >$LOG_PATH 2>&1 &
     echo "Start $AppName success..."
   fi
 }
