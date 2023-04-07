@@ -13,22 +13,22 @@
 1. [安装Docker并运行](https://docs.docker.com/get-docker/)；
 2.  在终端输入：
 	``` bash
-	docker run -d --device /dev/net/tun --cap-add NET_ADMIN -ti -v /data/docker_data/flight-etl:/data/flight-etl -p 1080:1080 -p 8888:8080 -e EC_VER=7.6.7 -e CLI_OPTS="-d vpnaddress -u username -p password" hagb/docker-easyconnect
+	docker run -d --device /dev/net/tun --cap-add NET_ADMIN -ti -v /data/docker_data/flight-imf:/data/flight-imf -p 1080:1080 -p 8888:8080 -e EC_VER=7.6.7 -e CLI_OPTS="-d vpnaddress -u username -p password" hagb/docker-easyconnect
 	```
 	其中 `-e EC_VER=7.6.7` 表示使用 `7.6.7` 版本的 EasyConnect，请根据实际情况修改版本号；
 3. 根据提示输入服务器地址、登录凭据；
 4. 浏览器（或其他支持的应用）可配置socks5代理（可以通过插件配置），端口 `1080`；也可以使用 http 代理，地址 端口 `8888`。
 5. 如需为 socks5 设置密码，可在 `docker run` 命令后追加 `-e SOCKS_USER="youruser" -e SOCKS_PASSWD="thepassword"`。
-6. 其中`-v /data/docker_data/flight-etl:/data/flight-etl` 为挂载目录，应用运行jar放在/data/docker_data/flight-etl目录下，然后在此目录下新增一个logs目录，用于存放日志文件
+6. 其中`-v /data/docker_data/flight-imf:/data/flight-imf` 为挂载目录，应用运行jar放在/data/docker_data/flight-imf目录下，然后在此目录下新增一个logs目录，用于存放日志文件
 
 ### 图形界面版
 
 1. [安装Docker并运行](https://docs.docker.com/get-docker/)；
-2. 在终端输入： `docker -d run --device /dev/net/tun --cap-add NET_ADMIN -ti -e PASSWORD=xxxx -v $HOME/.ecdata:/root -v /data/docker_data/flight-etl:/data/flight-etl -p 5901:5901 -p 1080:1080 -p 8888:8888 hagb/docker-easyconnect`
+2. 在终端输入： `docker -d run --device /dev/net/tun --cap-add NET_ADMIN -ti -e PASSWORD=xxxx -v $HOME/.ecdata:/root -v /data/docker_data/flight-imf:/data/flight-imf -p 5901:5901 -p 1080:1080 -p 8888:8888 hagb/docker-easyconnect`
 3. 使用vnc客户端连接vnc， 地址：127.0.0.1, 端口: 5901, 密码 xxxx ;
 4. 成功连上后你应该能看到easyconnect的登录窗口，填写并登录easyconnect；
 5. 浏览器（或其他支持的应用）可配置socks5代理（可以通过插件配置）, 端口:`1080`；也可以使用 http 代理，端:`8888`。
-6. 其中`-v /data/docker_data/flight-etl:/data/flight-etl` 为挂载目录，应用运行jar放在/data/docker_data/flight-etl目录下，然后在此目录下新增一个logs目录，用于存放日志文件
+6. 其中`-v /data/docker_data/flight-imf:/data/flight-imf` 为挂载目录，应用运行jar放在/data/docker_data/flight-imf目录下，然后在此目录下新增一个logs目录，用于存放日志文件
 
 **注意：如果你要将系统代理设置为127.0.0.1:1080而不是单独配置浏览器，请保证docker engine本身不会通过系统代理联网。**
 
