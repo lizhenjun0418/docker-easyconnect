@@ -32,7 +32,7 @@ COPY --from=fake-hwaddr fake-hwaddr/fake-hwaddr.so /usr/local/lib/fake-hwaddr.so
 
 ADD jdk-8u351-linux-x64.tar.gz /usr/local/jdk/
 
-RUN chmod 777 /tmp /usr/local/bin/flight-etl.sh -R && apt-get install vim curl procps telnet nginx -y
+RUN chmod 777 /tmp /usr/local/bin/flight-etl.sh -R && apt-get install vim curl procps telnet -y
 
 #ENV TYPE="" PASSWORD="" LOOP=""
 #ENV DISPLAY

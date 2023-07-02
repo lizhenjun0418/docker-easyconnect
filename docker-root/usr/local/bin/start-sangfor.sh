@@ -3,11 +3,9 @@ fake-hwaddr-run() { "$@" ; }
 [ -n "$FAKE_HWADDR" ] && fake-hwaddr-run() { LD_PRELOAD=/usr/local/lib/fake-hwaddr.so "$@" ; }
 [ -z "$_EC_CLI" ] && /usr/share/sangfor/EasyConnect/resources/bin/EasyMonitor
 sleep 1
-# 启动nginx
-/usr/sbin/nginx
-# 启动java服务
+# 启动项目脚本
 /usr/local/bin/flight-etl.sh start
-sleep 1
+sleep 3
 while true
 do
 	if [ -z "$_EC_CLI" ]; then
@@ -20,22 +18,12 @@ do
 
 		# 下面这行代码启动 EasyConnect 的前端。
 		fake-hwaddr-run /usr/share/sangfor/EasyConnect/EasyConnect --enable-transparent-visuals --disable-gpu
-		
-		# 启动nginx
-		/usr/sbin/nginx
-		# 启动java服务
-		/usr/local/bin/flight-etl.sh start
 	else
 		fake-hwaddr-run /usr/share/sangfor/EasyConnect/resources/bin/ECAgent &
 		sleep 1
 		fake-hwaddr-run easyconn login -t autologin
 		pidof svpnservice > /dev/null || fake-hwaddr-run bash -c "exec easyconn login $CLI_OPTS"
 		# # 重启一下 tinyproxy
-		
-		# 启动nginx
-		/usr/sbin/nginx
-		# 启动java服务
-		/usr/local/bin/flight-etl.sh start
 		# service tinyproxy restart
 		while pidof svpnservice > /dev/null ; do
 		       sleep 1
